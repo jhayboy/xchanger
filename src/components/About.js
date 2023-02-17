@@ -1,7 +1,7 @@
 import React from 'react' 
 import Human from "../assets/Humaaans - 3 Characters (1).png";
 import Navbar from './Navbar';
-// import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 export default function About() {
     return(
@@ -72,7 +72,7 @@ export default function About() {
                 </div>
 
 
-                {/* <div className="max-w-[1240px] mx-auto grid md:grid-cols-2 ">
+                <div className="max-w-[1240px] mx-auto grid md:grid-cols-2 ">
                     <img className="w-[500px] mx-auto my-4" src={Human} alt="humans" />
                     <div className="flex flex-col justify-center">
                         <p className="text-[#00df9a] font-bold">TRADE WITH TRADETRON</p>
@@ -91,7 +91,7 @@ export default function About() {
                             </button>
                         </Link>
                     </div>
-                </div> */}
+                </div>
 
 
                 
