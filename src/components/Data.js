@@ -14,7 +14,7 @@ const Coin = [
         name: "Steam",
         shortname: "Steam",
         price: 390,
-        buyprice: 900,
+        buyprice: 1980,
         perd: "390.00/$"
     },
     {
@@ -23,7 +23,7 @@ const Coin = [
         name: "Apple Universal",
         shortname: "Apple Universal",
         price: 150,
-        buyprice: 900,
+        buyprice: 500,
         perd: "150.00/$"
     },
     {
