@@ -20,6 +20,20 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
 }
+
+@media (min-width: 820px) {
+  /* Styles for desktop devices */
+  body {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Styles for mobile devices */
+  body {
+    display: block;
+  }
+}
   
 
 @tailwind base;

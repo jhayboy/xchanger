@@ -1,5 +1,9 @@
 import React from 'react' 
-import Human from "../assets/Humaaans - 3 Characters (1).png";
+import Service from "../assets/service.webp"
+import New from "../assets/Newjoin.png"
+import Sabout from "../assets/Sabout.jpg";
+import why from "../assets/why-[Converted].png"
+import Vision from '../assets/vision.png'
 import Navbar from './Navbar';
 import {Link} from 'react-router-dom'
 
@@ -11,7 +15,7 @@ export default function About() {
             </div>
             <div className='p-8 mt-20 flex flex-col gap-10'>
                 <div className="max-w-[1240px] mx-auto grid md:grid-cols-2 ">
-                    <img className="w-[500px] mx-auto my-4" src={Human} alt="humans" />
+                    <img className="w-[500px] mx-auto my-4" src={Sabout} alt="About us" />
                     <div className="flex flex-col justify-center">
                         <p className="text-[#00df9a] font-bold">TRADE WITH TRADETRON</p>
                         <h1 className="md:text-4xl ms:text-3xl text-2xl font-bold py-2">
@@ -37,10 +41,10 @@ export default function About() {
                             and decentralized control.
                         </p>
                     </div>
-                    <img className="w-[500px] mx-auto my-4" src={Human} alt="humans" />
+                    <img className="w-[300px] mx-auto my-4" src={Vision} alt="humans" />
                 </div>
                 <div className="max-w-[1240px] mx-auto grid md:grid-cols-2 ">
-                    <img className="w-[500px] mx-auto my-4" src={Human} alt="humans" />
+                    <img className="w-[500px] mx-auto my-4" src={Service} alt="humans" />
                     <div className="flex flex-col justify-center">
                         <h1 className="md:text-4xl ms:text-3xl text-2xl font-bold py-2">
                             Our Services
@@ -68,12 +72,12 @@ export default function About() {
                           <span className='font-semibold'>Dedicated customer support:</span> We have a team of dedicated support professionals who are available to answer your questions and help you with any issues you may have.<br/>
                         </p>
                     </div>
-                    <img className="w-[500px] mx-auto my-4" src={Human} alt="humans" />
+                    <img className="w-[500px] mx-auto my-4" src={why} alt="humans" />
                 </div>
 
 
                 <div className="max-w-[1240px] mx-auto grid md:grid-cols-2 ">
-                    <img className="w-[500px] mx-auto my-4" src={Human} alt="humans" />
+                    <img className="w-[500px] mx-auto my-4" src={New} alt="humans" />
                     <div className="flex flex-col justify-center">
                         <p className="text-[#00df9a] font-bold">TRADE WITH TRADETRON</p>
                         <h1 className="md:text-4xl ms:text-3xl text-2xl font-bold py-2">
@@ -92,11 +96,7 @@ export default function About() {
                         </Link>
                     </div>
                 </div>
-
-
-                
             </div>
         </div>
     )
 }
-
