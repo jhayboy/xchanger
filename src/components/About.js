@@ -17,7 +17,7 @@ export default function About() {
                 <div className="max-w-[1240px] mx-auto grid md:grid-cols-2 ">
                     <img className="w-[500px] mx-auto my-4" src={Sabout} alt="About us" />
                     <div className="flex flex-col justify-center">
-                        <p className="text-[#00df9a] font-bold">TRADE WITH TRADETRON</p>
+                        <p className="text-[#00df9a] font-bold">Trade With Exhancy</p>
                         <h1 className="md:text-4xl ms:text-3xl text-2xl font-bold py-2">
                             Welcome To Exhancy
                         </h1>
@@ -79,7 +79,7 @@ export default function About() {
                 <div className="max-w-[1240px] mx-auto grid md:grid-cols-2 ">
                     <img className="w-[500px] mx-auto my-4" src={New} alt="humans" />
                     <div className="flex flex-col justify-center">
-                        <p className="text-[#00df9a] font-bold">TRADE WITH TRADETRON</p>
+                        <p className="text-[#00df9a] font-bold">Trade With Exhancy</p>
                         <h1 className="md:text-4xl ms:text-3xl text-2xl font-bold py-2">
                             Join Us Today
                         </h1>

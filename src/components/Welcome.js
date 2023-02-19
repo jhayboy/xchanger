@@ -92,7 +92,7 @@ export default function Welcome(){
               <div className="w-full flex justify-center items-center py-4 px-5">
                 <div className="text-black flex justify-center items-center dark:text-white">
                   <FaReact className="dark:text-white" size={25}/>
-                  <p className="text-lg font-semibold">React</p>
+                  <p className="text-lg font-semibold">Exhancy</p>
                 </div>
                 <div></div>
               </div>

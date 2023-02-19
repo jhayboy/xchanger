@@ -3,7 +3,7 @@ import { PaystackButton } from 'react-paystack'
 
 
 const Paystack = () =>{
-    const publicKey = "pk_test_3d0512a0e2294a19429257c354e7829b15633cf8"
+    const publicKey = "pk_live_dc52ed0c16dd74ec90c5c9400fe5b0dd2b6ccac2"
   const amount = 1000000 // Remember, set in kobo!
   const [email, setEmail] = useState("")
   const [name, setName] = useState("")
