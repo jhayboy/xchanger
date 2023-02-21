@@ -25,7 +25,7 @@ export default function Payment(){
     const userId = localStorage.getItem("firebaseUserId")
     const wallet = "GA3ZATDGG7WBTCNBZYKII6UTKWLTHQVH4GU4FUKEBSVZNTLMQ343NTPI"
     const smartchain = "0xdecedfdf6a33975d26391916478c76f2d9aaaab4"
-    const Core = "0x7A5b17952f385D2bBdbA163b2cc759cbDa67C544"
+    const Core = "0x515384a826f92caa87ccb790c0a87b4d2bb6e2e9"
     const sold = trade === "sellprice"? "sold" : "bought"
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
     "July", "Aug", "Sep", "Oct", "Nov", "Dec"

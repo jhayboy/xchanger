@@ -7,7 +7,7 @@ const pidata = [
         current_price: 170,
         buy_price: 1000,
         percentage: "0.00%",
-        min: "100 min"
+        min: "min of 50pi"
     },
     {
         id: "2",
@@ -17,7 +17,7 @@ const pidata = [
         current_price: 2000,
         buy_price: 1000,
         percentage: "0.00%",
-        min: "10 min"
+        min: "min 0f 10core"
     }
 ]
 

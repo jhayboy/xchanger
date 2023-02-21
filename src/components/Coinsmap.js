@@ -173,7 +173,7 @@ export default function Coinsmap(){
                   {/* Buy and sell crypto section for Picoin */}
 
                   <div className="flex gap-3">
-                    <Link to='/welcome' disabled={drop} onClick={PiNetworkb} className="flex justify-center items-center mt-8 w-full gap-2">
+                    <Link to='/tradeCoin' onClick={PiNetworkb} className="flex justify-center items-center mt-8 w-full gap-2">
                       <div className="flex flex-col bg-white justify-center items-center p-5 rounded-xl">
                         <div className="w-8 h-8 rounded-full bg-slate-200 flex justify-center items-center">
                           <BsCreditCard size={20} className="text-blue-600"/>

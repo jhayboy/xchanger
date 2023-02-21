@@ -5,15 +5,17 @@ import { UserContext } from "./UserContext"
 import { AmountContext } from "./AmountContext"
 import { UsersContext } from "../ProfileComponent/UsersContext"
 import { GiftContext } from "../GiftComponent/GiftContext"
+import { StackPriceContext } from "../Stack/StackPriceContext"
 
 
 export default function ConfirmTrade(){
     const navigate = useNavigate()
     const {setUsers} = useContext(UsersContext)
+    const {setPayment} = useContext(StackPriceContext)
     const {list} = useContext(UserContext)
     const {trade} = useContext(GiftContext)
     const {tradeAmount} = useContext(AmountContext)
-    const sellmath = list.current_price + (64/100) * list.current_price
+    const sellmath = list.current_price + (60/100) * list.current_price
     const sellprice = sellmath.toLocaleString()
     const buymath = list.current_price + (67/100) * list.current_price
     const buyprice = buymath.toLocaleString()
@@ -34,6 +36,10 @@ export default function ConfirmTrade(){
             navigate('/welcome')
         }
     },[trade, navigate])
+
+    useEffect(() => {
+        setPayment(pibuy)
+    })
 
     return(
         <div>
@@ -60,7 +66,7 @@ export default function ConfirmTrade(){
                         <p className="w-[50%]">You {trade === "buyprice" ? "Pay" : "Get"}:</p>
                         <p>NGN {list.min && trade === "buyprice" ? pibuyPrice : list.min && trade === "sellprice" ? pisellPrice : trade === "buyprice" && !list.min ? amountToRecieve : amountToPay}</p>
                     </div>
-                    <Link to={trade === "buyprice" ? "/welcome" : "/paymentaddress"}>
+                    <Link to={trade === "buyprice" ? "/wallet" : "/paymentaddress"}>
                         <button className=" mt-8 bg-blue-600 p-3 text-white outline-none">Proceed with {trade === "buyprice" ? "purchase" : "sale"}</button>
                     </Link>
                 </div>

@@ -21,29 +21,51 @@ export default function Trade(){
     }
    })
     useEffect(()=>{
-        if(list.name === "PiCoin" && trade === "sellprice" && amount.quantity.length > 0){
+        if(list.current_price <= 2000 && trade === "sellprice" && amount.quantity >= 1){
             setNext(false)
         }
-        if(list.name !== "PiCoin" && amount.quantity.length > 0){
+        if(list.current_price > 2000 && trade === "sellprice" && amount.quantity > 0){
             setNext(false)
         }
-        if(list.name !== "PiCoin" && amount.quantity.length < 1){
+       
+        // if(list.name !== "PiCoin" && amount.quantity.length > 0){
+        //     setNext(false)
+        // }
+        // if(list.name !== "PiCoin" && amount.quantity.length < 1){
+        //     setNext(true)
+        // }
+        if(list.current_price <= 2000 && trade === "sellprice" && amount.quantity < 1){
             setNext(true)
         }
-        if(list.name === "PiCoin" && trade === "sellprice" && amount.quantity.length < 1){
+        if(list.current_price > 2000 && trade === "sellprice" && amount.quantity <= 0){
             setNext(true)
         }
-        if (trade === "buyprice" && list.name === "PiCoin" &&  amount.quantity.length < 2){
+        if (trade === "buyprice" && list.name === "PiCoin" &&  amount.quantity < 50){
             setNext(true)
         }
-        if (trade === "buyprice" && list.name === "PiCoin" &&  amount.quantity.length > 1){
+        if (trade === "buyprice" && list.name === "PiCoin" &&  amount.quantity >= 50){
+            setNext(false)
+        }
+        // if (trade === "buyprice" && list.name !== "PiCoin" && list.current_price < 2000 &&  amount.quantity >= 5){
+        //     setNext(false)
+        // }
+
+        // THIS IS WHAT IS REMAINING THE BUYING OF OTHER COIN THAT IS NOT CORE OR PI
+        // DECIDEING THE QUANTITY FOR OTHER COIN FOR NOW GO AND FIX THE SELL ING PRICE FOR OTHER COIN
+        // THAT IS NOT CORE OR PI
+
+        if (trade === "buyprice" && list.name === "Core Dao" &&  amount.quantity < 10){
+            setNext(true)
+        }
+        if (trade === "buyprice" && list.name === "Core Dao" &&  amount.quantity >= 10){
             setNext(false)
         }
         setTradeAmount(amount.quantity)
-    },[list.name, setTradeAmount, amount.quantity, trade])
+    },[list.current_price, list.name, setTradeAmount, amount.quantity, trade])
     const handleChange = (event) =>{
         setAmount({...amount, [event.target.name]: event.target.value})
     }
+    console.log(list.name)
     return(
         <div>
             <div className="flex justify-between text-white items-center fixed top-0 right-0 left-0 bg-blue-600 w-full p-2">                
