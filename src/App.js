@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Homes";
 import Login from "./components/Login";
@@ -28,6 +28,16 @@ import Forgotten from "./components/Forgotten";
 // import { AuthContext } from "./components/Auth";
 
 function App() {
+  function scrollToTop() {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
+  useEffect(()=>{
+    scrollToTop()
+  })
 const [list, setList] = useState("")
 const [tradeAmount, setTradeAmount] = useState("")
 const [trade, setTrade] = useState("")
