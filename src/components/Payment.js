@@ -61,7 +61,7 @@ export default function Payment(){
     }
 
     const [time, setTime] = useState(new Date());
-    const [timeOfDay, setTimeOfDay] = useState('');
+    const [ timeOfDay, setTimeOfDay] = useState('');
   
     useEffect(() => {
       const interval = setInterval(() => {
@@ -75,7 +75,7 @@ export default function Payment(){
         const hours = time.getHours();
         const minutes = time.getMinutes();
       setTimeOfDay(hours < 12 ? 'AM' : 'PM');
-    }, [time]);
+    }, [time, setTimeOfDay]);
     const realtime = time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
     
     useEffect(()=>{

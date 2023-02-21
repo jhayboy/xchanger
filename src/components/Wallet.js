@@ -3,12 +3,14 @@ import {IoIosArrowBack} from "react-icons/io"
 import {Link, useNavigate} from "react-router-dom"
 import { UserContext } from "./UserContext"
 import { GiftContext } from "../GiftComponent/GiftContext"
+import { WalletContext } from "../GiftComponent/WalletContext"
 
 export default function Trade(){
+    const {setWalletad} = useContext(WalletContext)
     const {trade} = useContext(GiftContext)
     const {list} = useContext(UserContext)
     // getting the values of the input 
-    const [address, setAddress] = useState({quantity:""})
+    const [wallet, setWallet] = useState({address:""})
     const [next, setNext] = useState(true)
     const navigate = useNavigate()
     // const [close, setClose] = useState(true)
@@ -17,17 +19,18 @@ export default function Trade(){
     if (!trade){
         navigate('/welcome')
     }
-   })
+    setWalletad(wallet.address)
+   }, [wallet, setWalletad, trade, navigate])
    useEffect(() => {
-    if (!address) {
+    if (!wallet) {
         setNext(true)
     }
-    if (address) {
+    if (wallet) {
         setNext(false)
     }
-   },[address])
+   },[wallet])
     const handleChange = (event) =>{
-        setAddress({...address, [event.target.name]: event.target.value})
+        setWallet({...wallet, [event.target.name]: event.target.value})
     }
     console.log(list.name)
     return(
@@ -45,10 +48,10 @@ export default function Trade(){
                     <img className="w-5" src={list.image} alt="logo"/>
                     <input 
                         onChange={handleChange} 
-                        value={address.quantity} 
+                        value={wallet.address} 
                         type="text" 
-                        name="quantity" 
-                        className="outline-none border-0 ml-2 appearance-none" 
+                        name="address" 
+                        className="outline-none border-0 ml-2 appearance-none w-full" 
                         placeholder="Wallet Address"
                     />
                 </div>

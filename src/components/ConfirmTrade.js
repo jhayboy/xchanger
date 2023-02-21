@@ -66,7 +66,7 @@ export default function ConfirmTrade(){
                         <p className="w-[50%]">You {trade === "buyprice" ? "Pay" : "Get"}:</p>
                         <p>NGN {list.min && trade === "buyprice" ? pibuyPrice : list.min && trade === "sellprice" ? pisellPrice : trade === "buyprice" && !list.min ? amountToRecieve : amountToPay}</p>
                     </div>
-                    <Link to={trade === "buyprice" ? "/wallet" : "/paymentaddress"}>
+                    <Link to={trade === "buyprice" ? "/payment" : "/paymentaddress"}>
                         <button className=" mt-8 bg-blue-600 p-3 text-white outline-none">Proceed with {trade === "buyprice" ? "purchase" : "sale"}</button>
                     </Link>
                 </div>

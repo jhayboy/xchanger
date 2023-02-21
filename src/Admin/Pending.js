@@ -72,7 +72,7 @@ export default function Pending(){
                     return(items.status === 'pending' ? 
                     <div key={items.id} onClick={()=>handleCheck(items)} className="px-3 py-1 shadow-md border-black text-white text-sm flex flex-col gap-2 mb-3 -order-1">
                         <div>
-                            <p>{items.email}</p>
+                            <p>{items.WalletAd ? items.WalletAd : items.email}</p>
                         </div>
                         <div className="flex justify-between items-center">
                             <div className="flex justify-center items-center gap-3">

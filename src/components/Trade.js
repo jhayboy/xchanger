@@ -89,7 +89,7 @@ export default function Trade(){
                     />
                 </div>
                 {trade === "sellprice" && list.name === "PiCoin" ? <p className="mr-auto text-slate-400 mt-2">Testnet Coin is not accepted</p> : <p className="mr-auto text-slate-400 mt-2">{trade === "buyprice" ? list.min : ""}</p>}
-                <Link to='/confirmtrade'>
+                <Link to={trade === "buyprice" ? '/wallet' : '/confirmtrade'}>
                     <button disabled={next} className=" mt-5 bg-blue-600 p-3 text-white outline-none">Proceed with {trade === "buyprice" ? "purchase" : "sale"}</button>
                 </Link>
             </div> 
