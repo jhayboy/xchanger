@@ -12,7 +12,7 @@ import Recieptdrop from "../GiftComponent/Recieptdrop"
 import { SellContext } from "../GiftComponent/SellContext"
 import { storage } from "./firebase";
 import { ref, uploadBytes } from "firebase/storage";
-import {addDoc, collection, serverTimestamp } from "firebase/firestore"
+import {addDoc, collection, doc, onSnapshot, serverTimestamp } from "firebase/firestore"
 import {auth} from "./firebase"
 import db from "./firebase"
 
@@ -117,7 +117,22 @@ export default function Trade({cardsellprice, cardbuyprice}){
     const [imageUpload, setImageUpload] = useState([]);
     // SETTING AMOUNT TO ITEMS SO WE CAN USE ITEMS.PRICE IN THE SUCCESS PAGE
     const [amp, setAmp] = useState([])  
-
+    const [usersEmail, setUsersEmail] = useState("")
+    const [profile, setProfile] = useState([])
+    
+  
+    useEffect(() =>{
+        onSnapshot(doc(db, "bankinfo", userId), (doc) => {
+            // console.log(doc.data());
+            const datal = doc.data()
+            setProfile(datal)
+        });
+    })
+    useEffect(()=>{
+        auth.onAuthStateChanged((user) =>{
+            setUsersEmail(user)
+        })
+    })
 
     const uploadImage = () => {
         if (imageUpload.length < 1)return;
@@ -125,7 +140,7 @@ export default function Trade({cardsellprice, cardbuyprice}){
         const pushImages = () => {
           Promise.all(
             imageUpload.map(async (imagine) => {
-              const imageRef = ref(storage, `imageUpload/${imagine.name + "name"}`); 
+              const imageRef = ref(storage, `imageUpload/${usersEmail + "name"}`); 
               await uploadBytes(imageRef, imagine);
               console.log(imagine)
             })
@@ -232,7 +247,7 @@ export default function Trade({cardsellprice, cardbuyprice}){
                     {loading ? <FaReact size={45} className="animate-spin "/> :
                     <div className="flex flex-col justify-center items-center gap-5">
                         <BsCheckCircleFill size={40} className="text-green-500"/>
-                    <p className="text-center">Your Giftcard is being reviewed, as soon as card is verified your Access bank account with the account number 0735390274 will be credited with &#8358;10,000 </p>
+                    <p className="text-center">Your Giftcard is being reviewed, as soon as card is verified your {profile.bankName} account with the account number {profile.accNo} will be credited with &#8358;10,000 </p>
                     <Link to='/welcome'>
                       <button onClick={handleTrans} className="bg-blue-600 p-3 px-5 rounded-lg text-white outline-none">Continue</button>
                     </Link>

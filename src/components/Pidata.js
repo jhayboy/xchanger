@@ -5,7 +5,7 @@ const pidata = [
         name: "PiCoin",
         symbol: "PI",
         current_price: 170,
-        buy_price: 1000,
+        buy_price: 500,
         percentage: "0.00%",
         min: "min of 50pi"
     },
@@ -15,7 +15,7 @@ const pidata = [
         name: "Core Dao",
         symbol: "Core Dao",
         current_price: 2000,
-        buy_price: 1000,
+        buy_price: 2950,
         percentage: "0.00%",
         min: "min 0f 10core"
     }
