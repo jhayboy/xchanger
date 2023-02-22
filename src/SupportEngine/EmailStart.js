@@ -11,7 +11,8 @@ export default function EmailStart(){
     // const [contact, setContact] = useState({name: "", email: "", message: ""})
 
     const navigate =  useNavigate()
-    const [lock, setLock] = useState(true)
+    const [lock, setLock] = useState(false)
+    const [alerts, setAlerts] = useState(false)
     const [contact, setContact] = useState({name: "", email: "", message: ""})
     const [loading, setLoading] = useState(false)
 
@@ -21,7 +22,8 @@ export default function EmailStart(){
       setLoading(true);
       emailjs.send('service_l6qbsm9', 'template_0g35zch', {name: contact.name, email: contact.email, message: contact.message}, 'ye0atviIa9nxefHia')
       .then((result) => {
-        navigate('/')
+        setLoading(false)
+        setAlerts(true)
       }, (error) => {
         console.log(error.text);
       });
@@ -77,8 +79,18 @@ export default function EmailStart(){
           <div className="flex items-center justify-between">
             <button disabled={lock} className="px-3 bg-white rounded-md py-1" onClick={handleSubmit}>{loading ? <AiOutlineLoading3Quarters className="animate-spin text-xl text-black"/> : 'Submit'}</button>
             <Link to='/welcome'>
-              <button className="px-3 bg-white rounded-md py-1 flex items-center gap-1">front <AiOutlineRollback/></button>
+              <button className="px-3 bg-white rounded-md py-1 flex items-center gap-1">Back <AiOutlineRollback/></button>
             </Link>
+          </div>
+
+          <div className={alerts ? "h-screen w-full bg-black/30 flex justify-center items-center fixed top-0 bottom-0 right-0 left-0" : "hidden"}>
+            <div className="w-[80%] bg-white flex flex-col justify-center items-center py-10 gap-4">
+              <p>Email Successful Sent</p>
+              <Link to='/welcome'>
+                <button className="bg-blue-600 px-2 py-1 text-white">continue</button>
+              </Link>
+              <p></p>
+            </div>
           </div>
         </form>
     </div>    

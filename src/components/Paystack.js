@@ -11,6 +11,7 @@ import { AmountContext } from "./AmountContext";
 import { WalletContext } from "../GiftComponent/WalletContext";
 import { useNavigate } from "react-router-dom";
 // pk_live_dc52ed0c16dd74ec90c5c9400fe5b0dd2b6ccac2
+// pk_test_3d0512a0e2294a19429257c354e7829b15633cf8
 
 const Paystack = () =>{
   const navigate = useNavigate()
@@ -32,7 +33,7 @@ const Paystack = () =>{
   const pisellPrice = pisell.toLocaleString()
   // const {payment} = useContext(StackPriceContext)
   const userId = localStorage.getItem('firebaseUserId');
-  const publicKey = "pk_live_dc52ed0c16dd74ec90c5c9400fe5b0dd2b6ccac2"
+  const publicKey = "pk_test_3d0512a0e2294a19429257c354e7829b15633cf8"
   const amount = pibuy * 100 // Remember, set in kobo!
   const divide = amount / 100
   const users = divide.toLocaleString()

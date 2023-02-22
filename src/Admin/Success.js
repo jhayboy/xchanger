@@ -31,7 +31,7 @@ export default function Success(){
                     return(items.status === 'Successful' ? 
                     <div key={items.id} className="px-3 py-1 shadow-md border-black text-white text-sm flex flex-col gap-2 mb-3 -order-1">
                         <div>
-                            <p>{items.sold === "sold" ? items.email : items.WalletAd}</p>
+                            <p>{items.sold === "bought" ? items.walletAd : items.email}</p>
                         </div>
                         <div className="flex justify-between items-center">
                             <div className="flex justify-center items-center gap-3">

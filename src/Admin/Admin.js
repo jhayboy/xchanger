@@ -1,10 +1,13 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+// import { auth } from 'firebase/auth'
+// import {useNavigate} from 'react-router-dom'
 import Pending from './Pending'
 import Success from './Success'
 import Failed from './Failed'
 
 
 export default function Admin(){
+    // const navigate = useNavigate()
     const [success, setSuccess] = useState(true)
     const [pending, setPending] = useState(true)
     const [failed, setFailed] = useState(true)
@@ -27,6 +30,14 @@ export default function Admin(){
         setPending(false)
         setSuccess(true)
     }
+
+    // useEffect(()=> {
+    //     auth.onAuthStateChanged((user) => {
+    //        if(!user) {
+    //         navigate('/login')
+    //        }    
+    //     })
+    // })
     return(
         <div className='bg-[#010f24] h-screen py-5'>
             <div className='text-white px-5 gap-5 flex flex-col'>
