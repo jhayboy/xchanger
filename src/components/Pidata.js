@@ -14,7 +14,7 @@ const pidata = [
         image: "../CORE.png",
         name: "Core Dao",
         symbol: "Core Dao",
-        current_price: 2000,
+        current_price: 1700,
         buy_price: 2950,
         percentage: "0.00%",
         min: "min 0f 10core"
