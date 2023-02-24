@@ -16,7 +16,7 @@ export default function Trade(){
     // const [close, setClose] = useState(true)
 
    useEffect(()=>{
-    if (!trade){
+    if (!trade && !list){
         navigate('/welcome')
     }
    })

@@ -56,7 +56,11 @@ const Paystack = () =>{
     const [timeOfDay, setTimeOfDay] = useState('');
   
 
-
+    useEffect(() => {
+      if(!walletad){
+        navigate('/welcome')
+      }
+    })
 
     useEffect(() => {
       const interval = setInterval(() => {

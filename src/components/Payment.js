@@ -3,7 +3,7 @@ import {IoIosArrowBack} from "react-icons/io"
 import {FiClipboard} from "react-icons/fi"
 import {BsCheckCircleFill} from "react-icons/bs"
 import {CiWarning} from 'react-icons/ci'
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import {doc, onSnapshot, addDoc, collection, serverTimestamp } from "firebase/firestore"
 import db from "./firebase"
 import {auth} from "./firebase"
@@ -13,6 +13,7 @@ import { UsersContext } from '../ProfileComponent/UsersContext'
 import { GiftContext } from "../GiftComponent/GiftContext"
 
 export default function Payment(){
+    const navigate = useNavigate()
     const {trade} = useContext(GiftContext)
     const {users} = useContext(UsersContext)
     const {list} = useContext(UserContext)
@@ -71,6 +72,12 @@ export default function Payment(){
     }, []);
     // console.log(timeOfDay)
     
+
+    useEffect(()=>{
+        if (!tradeAmount){
+            navigate('/welcome')
+        }
+    })
     useEffect(() => {
         const hours = time.getHours();
         const minutes = time.getMinutes();
