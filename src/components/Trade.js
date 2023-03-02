@@ -21,7 +21,7 @@ export default function Trade(){
     }
    })
     useEffect(()=>{
-        if(list.current_price <= 2000 && trade === "sellprice" && amount.quantity >= 1){
+        if(list.current_price <= 2000 && trade === "sellprice" && amount.quantity >= 5){
             setNext(false)
         }
         if(list.current_price > 2000 && trade === "sellprice" && amount.quantity > 0){

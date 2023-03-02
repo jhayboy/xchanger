@@ -27,6 +27,7 @@ export default function Welcome(){
   const [history, setHistory] = useState(true)
   const [nav, setNav] = useState(false);
   const [datal, setDatal] = useState([])
+  const [verified, setVerified] = useState()
   const userId = localStorage.getItem("firebaseUserId")
 
 
@@ -67,7 +68,9 @@ export default function Welcome(){
     auth.onAuthStateChanged((user) => {
         if (!user){
           navigate('/login')
-            
+        }
+        if (user) {
+          setVerified(user.emailVerified)
         }
     })
     
@@ -137,6 +140,7 @@ export default function Welcome(){
             <div className="flex justify-between items-center fixed py-4 bottom-0 right-0 left-0 px-5 dark:bg-[#0b212d] bg-white shadow text-slate-600">
               <Link to='/profile'>
                 <CgProfile size={30}/>
+                {verified === false ? <div className="bg-red-500 rounded-full w-3 h-3 absolute top-3"></div> : ""}
               </Link>
               <Link to='/emailsupport'>
                 <BiSupport size={30}/>

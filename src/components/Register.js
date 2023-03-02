@@ -5,7 +5,7 @@ import { doc, setDoc} from "firebase/firestore"
 import db from "./firebase"
 import { FaReact } from "react-icons/fa";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
-import {createUserWithEmailAndPassword} from "firebase/auth"
+import {createUserWithEmailAndPassword, sendEmailVerification} from "firebase/auth"
 import "react-phone-number-input/style.css";
 
 
@@ -63,11 +63,24 @@ export default function Register() {
       return
       }
 
-    
+  
+    //   user.sendEmailVerification()
+    // .addOnCompleteListener(new OnCompleteListener<Void>() {
+    //     @Override
+    //     public void onComplete(@NonNull Task<Void> task) {
+    //         if (task.isSuccessful()) {
+    //             // Email sent successfully
+    //         } else {
+    //             // Email failed to send
+    //         }
+    //     }
+    // });
+
       setErrors("")
       setLoading(true)
       setLoadings(false)
-      await createUserWithEmailAndPassword(auth, values.email, values.password)
+      const creation = await createUserWithEmailAndPassword(auth, values.email, values.password)
+      await sendEmailVerification(creation.user)
       .then(auth=>{
         setLoadings(true)
         setAlerts(false)

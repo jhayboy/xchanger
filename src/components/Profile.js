@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react"
 import { Link } from "react-router-dom";
 import 'firebase/firestore';
 import {doc, onSnapshot, setDoc, getDoc} from "firebase/firestore"
+import { onAuthStateChanged, sendEmailVerification} from "firebase/auth"
+import {MdVerified} from "react-icons/md"
 import db from "./firebase"
 import {auth} from "./firebase"
 import {IoIosArrowBack} from "react-icons/io"
@@ -19,12 +21,28 @@ export default function Profile(){
     const [currentUser, setCurrentUser] = useState()
     const userId = localStorage.getItem('firebaseUserId');
     const [bankinfo, setBankInfo] = useState({accNo: "", accName: "", bankName: ""})
+    const [verified, setVerified] = useState()
     const [bankbut, setBankBut] = useState(true)
+    const [sent, setSent] = useState(false)
      
 
     
     
+    const Sendemail = () => {
+       auth.onAuthStateChanged((user) => {
+           sendEmailVerification(user)
+           .then(() => {
+               // Email verification sent!
+               setSent(true);
+               // ...
+            });
+            setTimeout(()=> {
+                setSent(false)
+            }, 4000)
 
+       })
+    }
+    
     const handleChange = (e)=>{
         setBankInfo({...bankinfo,[e.target.name]: e.target.value})
     }
@@ -49,6 +67,7 @@ export default function Profile(){
         auth.onAuthStateChanged((user) => {
             if (user){
                 setCurrentUser(user.email)
+                setVerified(user.emailVerified)
                 
             }
         })
@@ -88,6 +107,12 @@ export default function Profile(){
 
     return(
         <div className="flex flex-col justify-center items-center bg-slate-400 px-5 h-screen">
+            <div className={sent ? "fixed top-0 right-0 left-0 w-full flex justify-center items-center" : "hidden"}>
+                <div className="w-[90%] bg-white gap-2 py-3 flex justify-center items-center mt-2 rounded-md">
+                    <p className="text-sm">Email Verification sent! Check your mail box</p>
+                    <MdVerified size={20 } className="text-green-500"/>
+                </div>
+            </div>
             <div className="flex justify-between items-center w-full py-5 ">
                 <Link to='/welcome'>
                     <IoIosArrowBack size={20} className="text-blue-600"/>
@@ -113,6 +138,7 @@ export default function Profile(){
                 <div className="w-full flex-start">
                     <p className="text-slate-300 text-sm">Email</p>
                     <p className="w-full h-10 bg-slate-200 rounded-lg border border-slate-100 flex items-center px-2">{currentUser}</p>
+                    <div>{verified === true ? <p className="text-sm text-green-500 ">verified</p> : <p onClick={Sendemail} className="text-sm text-red-500">verify your email</p>}</div>
                 </div>
                 <div className="w-full flex-start">
                     <p className="text-slate-300 text-sm">Bank Details</p>

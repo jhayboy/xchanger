@@ -4,8 +4,8 @@ const pidata = [
         image: "../logo-removebg-preview.png",
         name: "PiCoin",
         symbol: "PI",
-        current_price: 170,
-        buy_price: 500,
+        current_price: 180,
+        buy_price: 400,
         percentage: "0.00%",
         min: "min of 50pi"
     },
@@ -14,7 +14,7 @@ const pidata = [
         image: "../CORE.png",
         name: "Core Dao",
         symbol: "Core Dao",
-        current_price: 1700,
+        current_price: 1800,
         buy_price: 2950,
         percentage: "0.00%",
         min: "min 0f 10core"

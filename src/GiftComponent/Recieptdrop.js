@@ -1,22 +1,53 @@
-import React, { useContext} from "react"
+import React, { useContext, useState, useEffect} from "react"
 // import {Link} from "react-router-dom"
+import { PaystackButton } from 'react-paystack'
+import {auth} from "../components/firebase"
 import { TotalContext } from "./TotalContext"
 import { PriceContext } from "./PriceContext"
 import { QuantityContext } from "./QuantityContext"
 // import { clearIndexedDbPersistence } from "firebase/firestore"
 
 export default function Recieptdrop({values}){
+    const [email, setEmail] = useState("")
+    const [name, setName] = useState("")
+    const [phone, setPhone] = useState("")
+    const publicKey = "pk_test_3d0512a0e2294a19429257c354e7829b15633cf8"
+
+    useEffect (()=> {
+        auth.onAuthStateChanged((user) => {
+          setEmail(user.email)
+        })
+      })
+    
     // const [next, setNext] = useState(true)
     const {totals} = useContext(TotalContext) 
     const {price} = useContext(PriceContext) 
     const {quantities} = useContext(QuantityContext) 
 
     const totalPurchase = totals * price.quantity
+    const amount = totalPurchase * 100
     
     const date = new Date()
     const year = date.getFullYear() - 2000
     const month = date.getMonth() + 1
     const day = date.getDate()
+
+
+    const componentProps = {
+        email,
+        amount,
+        metadata: {
+          name,
+          phone,
+        },
+        publicKey,
+        text: "Pay Now",
+        onSuccess: () =>{
+        //   handleTrans() 
+        //   navigate('/welcome')
+        },
+        onClose: () => alert("Thanks for the attempt, we hope you change your mind"),
+      }
     return(
         <div className="flex flex-col justify-between  items-center w-full font-sans">
         
@@ -46,7 +77,8 @@ export default function Recieptdrop({values}){
             </div>
 
         </div>
-        <button className="px-16 py-2 w-full rounded-lg text-white font-semibold mt-3 bg-blue-600">Pay</button>
+        <PaystackButton className="px-16 py-2 w-full rounded-lg text-white font-semibold mt-3 bg-blue-600" {...componentProps} />
+        {/* <button className="px-16 py-2 w-full rounded-lg text-white font-semibold mt-3 bg-blue-600">Pay</button> */}
         
         {/* Buy and sell crypto section for Picoin */}
 
