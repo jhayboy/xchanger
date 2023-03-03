@@ -166,7 +166,6 @@ export default function Coinsmap(){
                     </div>
                   </div>
                   <div className="bg-white mt-8 w-full rounded-xl py-3 flex flex-col justify-center items-center ">
-                    
                     <p className="font-semibold">1 {pitiveItem.name} ~ NGN {pitiveItem.current_price}</p>
                   </div>
                   

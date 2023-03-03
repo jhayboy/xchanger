@@ -15,7 +15,7 @@ const pidata = [
         name: "Core Dao",
         symbol: "Core Dao",
         current_price: 1800,
-        buy_price: 2950,
+        buy_price: 2750,
         percentage: "0.00%",
         min: "min 0f 10core"
     }
