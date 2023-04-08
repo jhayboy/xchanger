@@ -1,15 +1,17 @@
 import React, {useState, useEffect} from "react"
 import { Link } from "react-router-dom";
 import 'firebase/firestore';
+import axios from "axios"
 import {doc, onSnapshot, setDoc, getDoc} from "firebase/firestore"
-import { onAuthStateChanged, sendEmailVerification} from "firebase/auth"
+// onAuthStateChanged,
+import {  sendEmailVerification} from "firebase/auth"
 import {MdVerified} from "react-icons/md"
 import db from "./firebase"
 import {auth} from "./firebase"
 import {IoIosArrowBack} from "react-icons/io"
 import {RxAvatar} from "react-icons/rx"
 import {CiEdit} from "react-icons/ci"
-import {AiOutlineCloseCircle} from "react-icons/ai"
+import {AiOutlineCloseCircle, AiOutlinePlus} from "react-icons/ai"
 
 
 
@@ -24,6 +26,8 @@ export default function Profile(){
     const [verified, setVerified] = useState()
     const [bankbut, setBankBut] = useState(true)
     const [sent, setSent] = useState(false)
+    const [listed, setListed] = useState([])
+    const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=ngn&order=market_cap_desc&per_page=3&page=1&sparkline=false'
      
 
     
@@ -103,6 +107,14 @@ export default function Profile(){
             setProfile(datal)
         });
     })
+    useEffect(()=>{
+        axios.get(url).then((response)=>{
+          setListed(response.data)
+          // console.log(response.data)
+        }).catch((error)=>{
+          console.log(error)
+        })
+    },[])
 
 
     return(
@@ -120,7 +132,7 @@ export default function Profile(){
                 <p className="text-lg font-s text-bold text-blue-600">View Profile</p>
                 <p></p>
             </div>
-            <div className="bg-white w-full h-[85%] flex flex-col items-center px-5 py-10 gap-5 rounded-2xl">
+            <div className="bg-white w-full h-[85%] flex flex-col items-center px-5 py-10 gap-5 rounded-2xl overflow-hidden overflow-auto">
                 <div className="flex flex-col items-center mb-5 gap-2">
                     <RxAvatar size={40}/>
                     <p>{main.firstname}'s Profile</p>
@@ -151,6 +163,17 @@ export default function Profile(){
                         }
                         <CiEdit onClick={handleClick} size={20} className="ml-auto"/>
                     </div>
+                <p className="flex items-center gap-2">Add Wallet Address <AiOutlinePlus/></p>
+                </div>
+                <div className="w-full bg-slate-200 rounded-lg border border-slate-100 flex flex-col px-2 text-sm gap-2 py-2">
+                    {listed.map((item) => {
+                        return(
+                            <div className="flex items-center" key={item.id}>
+                                <img className="w-5 h-5 rounded-full" src={item.image} alt={item.id}/>
+                                <p>{item.name}</p>
+                            </div>
+                        )
+                    })}
                 </div>
                 <div className={!info ? "fixed w-full px-5 top-0 bg-white/80 h-screen flex flex-col justify-center items-center" : "hidden"}>
                     <div className="w-full bg-white px-5 py-8">
