@@ -26,10 +26,6 @@ export default function Profile(){
     const [verified, setVerified] = useState()
     const [bankbut, setBankBut] = useState(true)
     const [sent, setSent] = useState(false)
-    const [listed, setListed] = useState([])
-    const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=ngn&order=market_cap_desc&per_page=3&page=1&sparkline=false'
-     
-
     
     
     const Sendemail = () => {
@@ -107,14 +103,7 @@ export default function Profile(){
             setProfile(datal)
         });
     })
-    useEffect(()=>{
-        axios.get(url).then((response)=>{
-          setListed(response.data)
-          // console.log(response.data)
-        }).catch((error)=>{
-          console.log(error)
-        })
-    },[])
+   
 
 
     return(
@@ -165,16 +154,7 @@ export default function Profile(){
                     </div>
                 <p className="flex items-center gap-2">Add Wallet Address <AiOutlinePlus/></p>
                 </div>
-                <div className="w-full bg-slate-200 rounded-lg border border-slate-100 flex flex-col px-2 text-sm gap-2 py-2">
-                    {listed.map((item) => {
-                        return(
-                            <div className="flex items-center" key={item.id}>
-                                <img className="w-5 h-5 rounded-full" src={item.image} alt={item.id}/>
-                                <p>{item.name}</p>
-                            </div>
-                        )
-                    })}
-                </div>
+                
                 <div className={!info ? "fixed w-full px-5 top-0 bg-white/80 h-screen flex flex-col justify-center items-center" : "hidden"}>
                     <div className="w-full bg-white px-5 py-8">
                         <AiOutlineCloseCircle onClick={()=>setInfo(true)} className="ml-auto flex mb-5" size={18}/>
