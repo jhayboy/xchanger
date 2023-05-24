@@ -4,7 +4,7 @@ const pidata = [
         image: "../logo-removebg-preview.png",
         name: "PiCoin",
         symbol: "PI",
-        current_price: 170,
+        current_price: 200,
         buy_price: 400,
         percentage: "0.00%",
         min: "min of 50pi"
