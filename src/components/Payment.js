@@ -24,7 +24,7 @@ export default function Payment(){
     const [accNull, setAccNull] = useState(true)
     const [currentUser, setCurrentUser] = useState('')
     const userId = localStorage.getItem("firebaseUserId")
-    const wallet = "GA3ZATDGG7WBTCNBZYKII6UTKWLTHQVH4GU4FUKEBSVZNTLMQ343NTPI"
+    const wallet = "GCOUEA2CHEJUDARRL4XO62UAKCK7GVCZKMYLKWFDX5KVZPFWLNIRIJN6"
     const smartchain = "0xdecedfdf6a33975d26391916478c76f2d9aaaab4"
     const Core = "0x515384a826f92caa87ccb790c0a87b4d2bb6e2e9"
     const sold = trade === "sellprice"? "sold" : "bought"
