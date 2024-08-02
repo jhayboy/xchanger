@@ -140,7 +140,10 @@ const Paystack = () =>{
       handleTrans() 
       navigate('/welcome')
     },
-    onClose: () => alert("Thanks for the attempt, we hope you change your mind"),
+    onClose: () => {
+      alert("Thanks for the attempt, we hope you change your mind")
+      navigate('/welcome')
+    },
   }
     return (
         <div className="flex flex-col items-center justify-center h-screen px-8 bg-[#010f24] text-white w-full">

@@ -4,6 +4,7 @@ import {Link}  from "react-router-dom"
 import {BsCreditCard} from "react-icons/bs"
 import {IoMdArrowDropup, IoMdArrowDropdown} from 'react-icons/io' 
 import pidata from "./Pidata"
+import {auth} from "./firebase"
 import { UserContext } from "./UserContext"
  import { GiftContext } from "../GiftComponent/GiftContext"
 
@@ -20,12 +21,23 @@ export default function Coinsmap(){
   const sellprice = cals.toLocaleString() 
   const calb = activeItem.current_price + (67/100) * activeItem.current_price
   const buyprice = calb.toLocaleString()
+  const [verified, setVerified] = useState()
+  const userId = localStorage.getItem('firebaseUserId');
   // const [mainItem, setMainItem] = useState([])
   // const [otherItem, setOtherItem] = useState([])
 
   // asigning coingecko link to a url variable
-  const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=ngn&order=market_cap_desc&per_page=10&page=1&sparkline=false'
-
+  useEffect(()=>{
+        
+        auth.onAuthStateChanged((user) => {
+            if (user){
+                setVerified(user.emailVerified)
+            }
+        })
+        
+    },[userId])
+  const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=1000&page=1&sparkline=false'
+  // console.log(url)
   // setting the arrays to this onClick function
   const Bars = (item) =>{
     setActiveItem(item)
@@ -55,7 +67,7 @@ export default function Coinsmap(){
   useEffect(()=>{
     axios.get(url).then((response)=>{
       setListed(response.data)
-      // console.log(response.data)
+      console.log(response.data)
     }).catch((error)=>{
       console.log(error)
     })
@@ -85,31 +97,33 @@ export default function Coinsmap(){
                     </div>
                   )
                 })}
-                {listed.map((item) => {
+                </div>
+                {/* {listed.map((item) => {
                   return(
-                    <div onClick={()=> Bars(item)} key={item.id} className="flex justify-between mt-8 pb-3 border border-t-0 border-x-0 border-b-slate-200 dark:border-b-slate-700 ">
-                        <div className="flex justify-center items-center gap-2">
-                          <div>
-                            <img src={item.image} alt={item.name} className="w-10 h-10 rounded-full"/>
-                          </div>
-                          <div>
-                            <p className="font-semibold dark:text-white">{item.name}</p>
-                            <p className="text-slate-600 font-semibold uppercase">{
-                            item.symbol}</p>
-                          </div>
+                    <div>
+                      {item.market_cap < 104000000 ? <div onClick={()=> Bars(item)} key={item.id} className="flex justify-between mt-8 pb-3 border border-t-0 border-x-0 border-b-slate-200 dark:border-b-slate-700 ">
+                      <div className="flex justify-center items-center gap-2">
+                        <div>
+                          <img src={item.image} alt={item.name} className="w-10 h-10 rounded-full"/>
                         </div>
-                        <div className="flex flex-col items-end">
-                          {/* <p className="dark:text-white">&#8358;{(item.current_price).toLocaleString()}</p> */}
-                          {/* <p className={item.price_change_percentage_24h > 0 ? "text-[#00df9a]" : "text-red-600"}>{item.price_change_percentage_24h.toFixed(2)}%</p> */}
-                          <div className={item.price_change_percentage_24h > 0 ? "flex justify-center items-center bg-[#00df9a]/25 px-1 rounded-md" : "flex justify-center items-center bg-red-600/25 px-1 rounded-md"}>
-                            {item.price_change_percentage_24h > 0 ? <IoMdArrowDropup className='text-[#00df9a]'/> : <IoMdArrowDropdown className="text-red-600"/>}
-                            <p className={item.price_change_percentage_24h > 0 ? "text-[#00df9a]" : "text-red-600"}>{item.price_change_percentage_24h.toFixed(2)}%</p>
-                          </div>
+                        <div>
+                          <p className="font-semibold dark:text-white">{item.name}</p>
+                          <p className="text-slate-600 font-semibold uppercase">{
+                          item.symbol}</p>
                         </div>
+                      </div>
+                      <div className="flex flex-col items-end">
+                        {/* <p className="dark:text-white">&#8358;{(item.current_price).toLocaleString()}</p> */}
+                        {/* <p className={item.price_change_percentage_24h > 0 ? "text-[#00df9a]" : "text-red-600"}>{item.price_change_percentage_24h.toFixed(2)}%</p> */}
+                        {/* <div className={item.price_change_percentage_24h > 0 ? "flex justify-center items-center bg-[#00df9a]/25 px-1 rounded-md" : "flex justify-center items-center bg-red-600/25 px-1 rounded-md"}>
+                          {item.price_change_percentage_24h > 0 ? <IoMdArrowDropup className='text-[#00df9a]'/> : <IoMdArrowDropdown className="text-red-600"/>}
+                          <p className={item.price_change_percentage_24h > 0 ? "text-[#00df9a]" : "text-red-600"}>{item.price_change_percentage_24h}%</p>
+                        </div>
+                      </div>
+                    </div> : ""}
                     </div>
                   )
-                })}
-              </div>
+                })} */} */}
 
 
               {/* overlay */}

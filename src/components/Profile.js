@@ -143,17 +143,18 @@ export default function Profile(){
                 </div>
                 <div className="w-full flex-start">
                     <p className="text-slate-300 text-sm">Bank Details</p>
-                    <div className="w-full bg-slate-200 rounded-lg border border-slate-100 flex items-center px-2 text-sm gap-2 py-2">
-                        {profile.accNo === "null" ? <p>Add bank account</p> : <div className="flex items-center px-2 text-sm gap-2 py-2"><div className="h-6 w-6 rounded-full bg-white flex justify-center items-center">Bank</div>
-                        <div>
-                            <p>{profile.accNo} - {profile.accName}</p>
-                            <p>{profile.bankName}</p>
-                        </div></div>
-                        }
-                        <CiEdit onClick={handleClick} size={20} className="ml-auto"/>
-                    </div>
-                <p className="flex items-center gap-2">Add Wallet Address <AiOutlinePlus/></p>
+                        <div className="w-full bg-slate-200 rounded-lg border border-slate-100 flex items-center px-2 text-sm gap-2 py-2">
+                            {profile.accNo === "null" ? <p>Add bank account</p> : <div className="flex items-center px-2 text-sm gap-2 py-2"><div className="h-6 w-6 rounded-full bg-white flex justify-center items-center">Bank</div>
+                            <div>
+                                <p>{profile.accNo} - {profile.accName}</p>
+                                <p>{profile.bankName}</p>
+                            </div></div>
+                            }
+                            <CiEdit onClick={handleClick} size={20} className="ml-auto"/>
+                        </div>
+                    <p className="flex items-center gap-2">Add Wallet Address <AiOutlinePlus/></p>
                 </div>
+                
                 
                 <div className={!info ? "fixed w-full px-5 top-0 bg-white/80 h-screen flex flex-col justify-center items-center" : "hidden"}>
                     <div className="w-full bg-white px-5 py-8">
